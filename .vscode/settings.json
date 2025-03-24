@@ -6,6 +6,15 @@
         "interface/ftdi/esp32_devkitj_v1.cfg",
         "target/esp32.cfg"
     ],
-    "idf.portWin": "COM1",
-    "idf.toolsPathWin": "C:\\Users\\Max\\.espressif"
+    "idf.portWin": "COM5",
+    "idf.toolsPathWin": "C:\\Users\\Max\\.espressif",
+    "idf.flashType": "UART",
+    "files.associations": {
+        "esp_log.h": "c",
+        "nvs_flash.h": "c",
+        "esp_system.h": "c",
+        "cstdlib": "c",
+        "compare": "c",
+        "cstdint": "c"
+    }
 }

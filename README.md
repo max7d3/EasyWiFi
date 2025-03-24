@@ -1,32 +1,40 @@
-# _Sample project_
+# EasyWiFi
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+EasyWiFi is a simple component for ESP-IDF that allows to skip the boilerplate Wi-Fi code and provides the minimum functionality needed to get ESP32 connected to a Wi-Fi network. This component is designed to be simple, easy to use and can be expanded in the future if needed.
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+## Features
 
+- Simplified Wi-Fi initialization and connection
+- Automatic connection to the last known Wi-Fi network (using data that ESP-IDF stores by default)
+- Access Point (AP) mode for configuration
+- Web-based configuration portal
+- Callback for Wi-Fi disconnection events
 
+### Usage
 
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
+1. Initialize EasyWiFi in `app_main` function:
 
-## Example folder contents
+    ```c
+    void app_main(void)
+    {
+        easy_wifi_init();
+    }
+    ```
+Code after init function won't be executed if WiFi is not connected.
 
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
+2. Optionally, set a callback function for Wi-Fi disconnection events:
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
+    ```c
+    void wifi_disconnect_callback(void)
+    {
+        printf("Wi-Fi disconnected!\n");
+    }
 
-Below is short explanation of remaining files in the project folder.
+    void app_main(void)
+    {
+        easy_wifi_set_disconnect_cb(wifi_disconnect_callback);
+        easy_wifi_init();
+    }
+    ```
 
-```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
-```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+3. You can also get current IP in string format by calling `easy_wifi_get_ip()`. It ruturns pointer to that string.
