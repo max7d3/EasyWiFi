@@ -20,7 +20,7 @@ EasyWiFi is a simple component for ESP-IDF that allows to skip the boilerplate W
         easy_wifi_init();
     }
     ```
-Code after init function won't be executed if WiFi is not connected.
+    Code after init function won't be executed if Wi-Fi is not connected.
 
 2. Optionally, set a callback function for Wi-Fi disconnection events:
 
