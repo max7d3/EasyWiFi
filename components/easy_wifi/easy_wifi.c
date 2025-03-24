@@ -346,6 +346,7 @@ void easy_wifi_init(void)
     {
         ESP_LOGW(TAG, "No stored WiFi credentials found, starting AP mode and configuration server...");
         start_ap_and_config_portal();
+        while(1) { vTaskDelay(1000 / portTICK_PERIOD_MS); } // Halt rest of the code. In case of successful connection, program will restart anyway.
     }
 }
 
